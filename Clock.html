@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <title>DIGITAL CLOCK</title>
+</head> 
+
+<style>
+    *{
+        font-family: Arial, Helvetica, sans-serif;
+    }
+    body{
+        
+        background-color:rgb(201, 121, 121);
+
+    }
+    .clock{
+        position:absolute;
+        top:50%;
+        left:50%;
+        transform:translate(-50%, -50%);
+        padding: 20px;
+        color: white;
+        background-color: rgb(194, 40, 40); 
+        box-shadow: 0 0 10px 1px;
+        text-align: center;
+        word-spacing: 2px;
+       border-radius: 20px;
+       
+    }
+    p{
+        color:gray;
+    }
+
+    h1{
+        font-size: 45px;
+        color:white;
+    }
+    sub{
+        vertical-align: sub;
+        font-size: 12px;
+    }
+    
+    
+</style>
+<body>
+        <div class ="clock">
+            <p class="days">
+            <span id="SUN">sun</span>&nbsp; <span id="MON">mon</span>&nbsp; <span id="TUE">tue</span>&nbsp;<span id="WED">wed</span>&nbsp; <span id="THUR">thur</span>&nbsp; <span id="FRI">fri</span>&nbsp; <span id="SAT">sat</span>&nbsp;</p>
+            <h1><span id="hours">00</span>
+            <span>:</span>
+        <span id="minutes">00</span>
+        <span>:</span>
+    <span id="seconds">00</span><sub>
+<span id="am_or_pm">AM </span> </sub> 
+
+</h1>
+        
+    </div>
+    <script>
+        var daysofweek = ['SUN', 'MON', 'TUE', 'WED', 'THUR', 'FRI', 'SAT']; 
+
+        function TimeUpdate(){
+       
+        var date = new Date();
+        var hours = date.getHours();
+        var minutes = date.getMinutes();
+        var seconds = date.getSeconds();
+        var am_or_pm = document.getElementById('am_or_pm');
+        var daydate = date.getDay();
+      
+        if(hours >=12){
+            am_or_pm.innerHTML = "PM"
+        }else{
+            am_or_pm.innerHTML = "AM"
+        }
+        if(hours > 12){
+            hours -=12;
+            hours = "0" + hours;
+        }
+
+        if(minutes < 10){
+            minutes = "0" + minutes;
+        }
+        if(seconds < 10){
+            seconds = "0" + seconds;
+        }
+        document.getElementById('hours').innerHTML = hours;
+        document.getElementById('minutes').innerHTML = minutes;
+        document.getElementById('seconds').innerHTML = seconds;
+        document.getElementById('' +daysofweek[daydate]+'').style.color="rgb(250, 245, 250)";
+    }
+        setInterval(TimeUpdate, 100)
+
+    </script>
+   
+</body>
+</html>
